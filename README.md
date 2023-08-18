@@ -6,9 +6,9 @@ This is a react-native-web version of NamiML for web/cross-platform projects, fo
 
 ## Compatibility table
 
-| react-nami | Browser                                      |
-|------------|----------------------------------------------|
-| 0.0.1      | react / react-native-web / react-native expo |
+| react-native-web-nami-sdk | Browser                                      |
+|------------|-------------------------------------------------------------|
+| 0.0.1      |                react / react-native-web / react-native expo |
 
 
 ## Setup for development
