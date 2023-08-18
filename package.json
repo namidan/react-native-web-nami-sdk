@@ -1,0 +1,61 @@
+{
+  "name": "react-native-web-nami-sdk",
+  "version": "0.0.1",
+  "main": "dist/index.ts",
+  "repository": "https://github.com/namiml/react-native-web-nami-sdk",
+  "author": "bataevvlad <bataevvlad@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist/",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "webpack --mode production",
+    "watch": "webpack --watch --mode production",
+    "clean:all": "cd examples/expo-basic && rm -rf node_modules yarn.lock && cd ../.. && rm -rf node_modules yarn.lock",
+    "rebuild:all": "yarn install && yarn build && cd examples/expo-basic && yarn install",
+    "clean:rebuild": "yarn clean:all && yarn rebuild:all",
+    "run:expo-basic": "cd examples/expo-basic && yarn web",
+    "lint": "eslint ./src/**/*.{ts,tsx}"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-native": "*",
+    "react-native-web": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@callstack/eslint-config": "^13.0.2",
+    "@react-native-community/eslint-config": "^3.2.0",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@types/react-native": "^0.72.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.41.0",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-react-native-web": "^0.19.7",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.46.0",
+    "eslint-import-resolver-webpack": "^0.13.5",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-jest": "^27.2.2",
+    "eslint-plugin-local-rules": "^1.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.72.4",
+    "react-native-web": "^0.19.7",
+    "react-spring-bottom-sheet": "^3.4.1",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
