@@ -12,6 +12,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
+    "useDefineForClassFields": true,
     "allowUnreachableCode": false,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

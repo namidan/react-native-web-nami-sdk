@@ -8,7 +8,16 @@ module.exports = {
     libraryTarget: "commonjs2",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: [
+      ".ts",
+      ".tsx",
+      ".js",
+      ".json",
+      ".mjs",
+      ".web.js",
+      ".web.mjs",
+      ".mjs.js",
+    ],
     alias: {
       "react-native$": "react-native-web",
       "react-nami": path.resolve(__dirname, "../react-nami/src/index"),
@@ -16,6 +25,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto",
+      },
       {
         test: /\.tsx?$/,
         loader: "ts-loader",

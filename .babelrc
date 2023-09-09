@@ -1,6 +1,7 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
   "plugins": [
+    ["@babel/plugin-proposal-class-properties"],
     ["react-native-web"],
     ["module-resolver",
       {
@@ -9,5 +10,8 @@
         "react-nami": "../../react-nami/src/index"
       }
     }]
-  ]
+  ],
+  "assumptions": {
+    "setPublicClassFields": false
+  }
 }

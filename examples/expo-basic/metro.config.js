@@ -37,6 +37,8 @@ const config = {
       acc[name] = path.join(__dirname, 'node_modules', name);
       return acc;
     }, {}),
+    // Adding 'mjs' to the list of file extensions for react-markdown package
+    sourceExts: [...(defaultConfig.resolver.sourceExts || []), 'mjs']
   },
 
   transformer: {
