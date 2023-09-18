@@ -8,15 +8,15 @@ import type { TComponent, TConditionalComponent } from "react-nami";
 // import ProductContainer from "./components/ProductContainer";
 // import SegmentPicker from "./components/SegmentPicker";
 // import { SegmentPickerItem } from "./components/SegmentPickerItem";
-// import Stack from "./components/Stack";
+import Button from "./button.component";
 // import SvgImage from "./components/SvgImage";
 // import { Symbol, Text, TextList } from "./components/Texts";
 // import { ComponentContext, FeaturedContext } from "./contexts";
-import Button from "./button.component";
 import Container from "./Container";
 import Image from "./Image";
 import ProductContainer from "./ProductContainer";
 import Spacer from "./spacer.component";
+import Stack from "./Stack";
 import { Text, Symbol, TextList } from "./text.component";
 import { ComponentContext, FeaturedContext } from "../contexts/context";
 import {
@@ -30,11 +30,13 @@ type ComponentProps<T> = {
   inFocusedState?: boolean;
   groupId: string | null;
 };
+
 type ComponentFC = React.FC<{
   component: any;
   inFocusedState?: boolean;
   groupId: string | null;
 }>;
+
 type ComponentsMapType = { [key: string]: ComponentFC };
 
 const COMPONENTS_MAP: ComponentsMapType = {
@@ -42,7 +44,7 @@ const COMPONENTS_MAP: ComponentsMapType = {
   symbol: Symbol,
   button: Button,
   text: Text,
-  // stack: Stack,
+  stack: Stack,
   "text-list": TextList,
   container: Container,
   productContainer: ProductContainer,

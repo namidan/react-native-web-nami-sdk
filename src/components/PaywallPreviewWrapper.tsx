@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     flex: 1,
-    paddingHorizontal: 15,
     height: "100%",
     width: "100%",
     flexDirection: "column",

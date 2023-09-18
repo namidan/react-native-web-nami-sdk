@@ -36,7 +36,6 @@ const Wrapper = styled.div<ImageProps>`
 `;
 
 export default function Image({ component }: ImageProps) {
-  console.log(component, "image component");
   return component.url ? <Wrapper component={component} /> : null;
 }
 

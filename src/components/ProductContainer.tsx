@@ -28,22 +28,24 @@ export default function ProductContainer({
   inFocusedState,
   groupId,
 }: ComponentProps<TProductContainer>): JSX.Element {
+  const components = PaywallStore.processProductComponents(component);
+  console.log(components, "components");
   return (
     <Wrapper component={component} inFocusedState={inFocusedState}>
-      {PaywallStore.processProductComponents().map((item, index) => (
-        <FeaturedContext.Provider key={index} value={item.featured}>
-          {item.components.map(
-            (child: any, j: React.Key | null | undefined) => (
+      {components.map(([featured, children], i) => {
+        return (
+          <FeaturedContext.Provider key={i} value={featured}>
+            {children.map((child: any, j: React.Key | null | undefined) => (
               <TemplateComponent
-                key={`${j}_${index}`}
+                key={j}
                 component={child}
                 inFocusedState={inFocusedState}
                 groupId={groupId}
               />
-            )
-          )}
-        </FeaturedContext.Provider>
-      ))}
+            ))}
+          </FeaturedContext.Provider>
+        );
+      })}
     </Wrapper>
   );
 }
