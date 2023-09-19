@@ -2,19 +2,12 @@ import React, { useContext, useMemo } from "react";
 
 import type { TComponent, TConditionalComponent } from "react-nami";
 
-// import CarouselContainer from "./components/CarouselContainer";
-// import Container from "./components/Container";
-// import Image from "./components/Image";
-// import ProductContainer from "./components/ProductContainer";
-// import SegmentPicker from "./components/SegmentPicker";
-// import { SegmentPickerItem } from "./components/SegmentPickerItem";
 import Button from "./button.component";
-// import SvgImage from "./components/SvgImage";
-// import { Symbol, Text, TextList } from "./components/Texts";
-// import { ComponentContext, FeaturedContext } from "./contexts";
 import Container from "./Container";
 import Image from "./Image";
 import ProductContainer from "./ProductContainer";
+import SegmentPicker from "./SegmentPicker";
+import { SegmentPickerItem } from "./SegmentPickerItem";
 import Spacer from "./spacer.component";
 import Stack from "./Stack";
 import { Text, Symbol, TextList } from "./text.component";
@@ -52,8 +45,8 @@ const COMPONENTS_MAP: ComponentsMapType = {
   image: Image,
   // videoUrl: Image,
   // svgImage: SvgImage,
-  // segmentPicker: SegmentPicker,
-  // segmentPickerItem: SegmentPickerItem,
+  segmentPicker: SegmentPicker,
+  segmentPickerItem: SegmentPickerItem,
 };
 
 export default function TemplateComponent({

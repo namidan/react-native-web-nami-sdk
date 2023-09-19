@@ -2,7 +2,9 @@ import type {
   TBaseComponent,
   TConditionalComponent,
   TPaywallMedia,
+  ISkuMenu,
   TTestObject,
+  TProductGroup,
 } from "react-nami";
 
 type ReplacementsType<T = any> = {
@@ -128,29 +130,29 @@ export function buildMediaVariables(
   }, {});
 }
 
-// export function getSkuButtonComponents(
-//   // items: SelectableItemType[],
-//   component: TProductContainer,
-//   // mediaList: { [mediaName: string]: Pick<TPaywallMedia, "content"> } = {},
-//   additionalVariableStates?: {}
-// ): [boolean, TComponent[]][] {
-//   const base = component.productBaseComponents || component.components || [];
-//   const featured = component.productFeaturedComponents || base;
-//   return items.map((item) => {
-//     const components = item.featured ? featured : base;
-//     const variables = {
-//       ...item.variables,
-//       // ...mocks,
-//       ...additionalVariableStates,
-//       id: item.sku_id,
-//     };
-//     const replacements = {
-//       sku: variables,
-//       media: buildMediaVariables(mediaList, { convertToUrl: true }),
-//     };
-//     return [
-//       item.featured,
-//       interpolate(components, interpolate(replacements, replacements)),
-//     ];
-//   }, []);
-// }
+///
+type TGroupReplacement = { id: string; displayName: string };
+export function buildStateGroups(
+  productGroups: TProductGroup[] | ISkuMenu[]
+): TGroupReplacement[] {
+  // const requiredGroups = template["ui.requiredGroups"];
+  return productGroups.length
+    ? productGroups.map((group) => ({
+        id: group.id,
+        displayName: group.display_name,
+        ref: group.ref,
+      }))
+    : buildGroupsMock(2);
+}
+
+function buildGroupsMock(amount: number): TGroupReplacement[] {
+  const groups = [];
+  for (let i = 1; i < amount + 1; i++) {
+    groups.push({
+      id: "group-placeholder-" + i,
+      displayName: "Group " + i,
+      ref: "group" + i,
+    });
+  }
+  return groups;
+}
