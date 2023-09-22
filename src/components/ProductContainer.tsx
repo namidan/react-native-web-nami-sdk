@@ -25,8 +25,7 @@ export default function ProductContainer({
   inFocusedState,
   groupId,
 }: ComponentProps<TProductContainer>): JSX.Element {
-  const components = PaywallStore.processProductComponents(component);
-  // console.log(components, "components");
+  const components = PaywallStore.processProductComponents(component, groupId);
   return (
     <Wrapper component={component} inFocusedState={inFocusedState}>
       {components.map(([featured, children], i) => {

@@ -26,6 +26,7 @@ type ComponentProps<T> = {
 
 type ComponentFC = React.FC<{
   component: any;
+  children?: React.ReactNode;
   inFocusedState?: boolean;
   groupId: string | null;
 }>;
@@ -41,12 +42,12 @@ const COMPONENTS_MAP: ComponentsMapType = {
   "text-list": TextList,
   container: Container,
   productContainer: ProductContainer,
-  // carouselContainer: CarouselContainer,
   image: Image,
-  // videoUrl: Image,
-  // svgImage: SvgImage,
   segmentPicker: SegmentPicker,
   segmentPickerItem: SegmentPickerItem,
+  // videoUrl: Image,
+  // svgImage: SvgImage,
+  // carouselContainer: CarouselContainer,
 };
 
 export default function TemplateComponent({
@@ -54,7 +55,6 @@ export default function TemplateComponent({
   inFocusedState,
   groupId,
 }: ComponentProps<TComponent | TConditionalComponent>) {
-  // console.log(component, "ON_START");
   const featured = useContext(FeaturedContext);
   const upperContext = useContext(ComponentContext);
 
@@ -65,16 +65,17 @@ export default function TemplateComponent({
       : { flag: component.flag };
     return { ...(upperContext || {}), ...output };
   }, [component.flag, component.context, upperContext]);
-  // console.log(context, "CONTEXT");
 
   if (component.component === "condition" || !!component.conditionAttributes) {
-    component = interpolate(component, { sku: { featured }, context });
-    // console.log("component after check on condition:", component);
+    component = interpolate(component, {
+      sku: {
+        featured,
+      },
+      context,
+    });
   }
 
   if (component.component === "condition") {
-    // console.log(component.components, "condition component");
-    // console.log(conditionComponentMatches(component), "condition check");
     if (!conditionComponentMatches(component)) return null;
     const children = component.components?.map(
       (child: any, i: React.Key | null | undefined) => (
@@ -108,7 +109,6 @@ export default function TemplateComponent({
   );
 
   const output = (
-    // @ts-ignore
     <Component
       component={component}
       inFocusedState={inFocusedState}

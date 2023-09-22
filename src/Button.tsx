@@ -1,37 +1,52 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import "react-spring-bottom-sheet/dist/style.css";
 
 import { PaywallStore } from "react-nami";
 
 import PaywallPreview from "./components/PaywallPreview";
-import { buildStateGroups, interpolate } from "./utils/allUtils";
+import { interpolate } from "./utils/allUtils";
+import { loadFonts } from "./utils/fonts";
 
 interface ButtonProps {
   label: string;
 }
 
 export const ButtonNami: React.FC<ButtonProps> = () => {
-  const template = PaywallStore.payWall;
-  const groups = buildStateGroups(PaywallStore.skuProducts);
-  const launch = PaywallStore.launch;
+  const {
+    payWall: template,
+    launch,
+    initialState: { groups, selectedProducts, currentPage, currentGroupId },
+    skuHasOffer: {
+      anySkuHasTrialOffer,
+      anySkuHasIntroOffer,
+      anySkuHasPromoOffer,
+    },
+    currentFontsArray,
+  } = PaywallStore;
+  const focusedState = true;
+
+  useEffect(() => {
+    loadFonts(currentFontsArray);
+  }, [currentFontsArray]);
 
   const parsedTemplate = useMemo(() => {
     if (template === null) return null;
+    // TODO: Do we need citation?
     // const citation = citations[language] || citations[defaultLanguage] || null;
     const state = {
       ...(template.initialState || {}),
       groups,
-      launch: PaywallStore.launch,
-      currentGroupId: PaywallStore.currentGroupId,
-      selectedProducts: PaywallStore.initialState.selectedProducts,
+      launch,
+      currentGroupId: "3f2fcdbf-fe89-49fb-8740-e9efd6234d00",
+      selectedProducts,
+      anySkuHasTrialOffer,
+      anySkuHasIntroOffer,
+      anySkuHasPromoOffer,
+      currentPage,
+      // TODO obtain this later;
+      focusedState,
       safeAreaTop: 40,
       isLoggedIn: false,
-      anySkuHasTrialOffer: PaywallStore.skuHasOffer.anySkuHasTrialOffer,
-      anySkuHasIntroOffer: PaywallStore.skuHasOffer.anySkuHasIntroOffer,
-      anySkuHasPromoOffer: PaywallStore.skuHasOffer.anySkuHasPromoOffer,
-      currentPage: PaywallStore.initialState.currentPage,
-      // handle hovers for that
-      focusedState: true,
     };
     const replacements = {
       state,
@@ -49,35 +64,35 @@ export const ButtonNami: React.FC<ButtonProps> = () => {
     template,
     groups,
     launch,
+    currentGroupId,
+    anySkuHasTrialOffer,
+    anySkuHasIntroOffer,
+    anySkuHasPromoOffer,
+    currentPage,
+    selectedProducts,
     // variables,
     // citations,
     // defaultLanguage,
     // language,
     // iconsQuery.data,
-    // currentGroupId,
     // mediaList,
-    // selectedProducts,
     // inDarkMode,
     // orientation,
     // focusedState,
     // safeAreaTop,
     // isLoggedIn,
-    // anySkuHasTrialOffer,
-    // anySkuHasIntroOffer,
-    // anySkuHasPromoOffer,
-    // currentPage,
     // customer,
   ]);
-  const renderBottomSheet = () => {
+  const renderTemplate = () => {
     return (
       <PaywallPreview
         template={parsedTemplate!}
-        focusedState={true}
-        currentPage={"1"}
-        groupId={"c9c90c98-388c-46e3-8b9b-f5827985f8b3"}
+        focusedState={focusedState}
+        currentPage={currentPage}
+        groupId={"3f2fcdbf-fe89-49fb-8740-e9efd6234d00"}
       />
     );
   };
 
-  return <>{renderBottomSheet()}</>;
+  return <>{renderTemplate()}</>;
 };

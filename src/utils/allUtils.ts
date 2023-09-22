@@ -2,9 +2,7 @@ import type {
   TBaseComponent,
   TConditionalComponent,
   TPaywallMedia,
-  ISkuMenu,
   TTestObject,
-  TProductGroup,
 } from "react-nami";
 
 type ReplacementsType<T = any> = {
@@ -130,29 +128,13 @@ export function buildMediaVariables(
   }, {});
 }
 
-///
-type TGroupReplacement = { id: string; displayName: string };
-export function buildStateGroups(
-  productGroups: TProductGroup[] | ISkuMenu[]
-): TGroupReplacement[] {
-  // const requiredGroups = template["ui.requiredGroups"];
-  return productGroups.length
-    ? productGroups.map((group) => ({
-        id: group.id,
-        displayName: group.display_name,
-        ref: group.ref,
-      }))
-    : buildGroupsMock(2);
-}
-
-function buildGroupsMock(amount: number): TGroupReplacement[] {
-  const groups = [];
-  for (let i = 1; i < amount + 1; i++) {
-    groups.push({
-      id: "group-placeholder-" + i,
-      displayName: "Group " + i,
-      ref: "group" + i,
-    });
-  }
-  return groups;
-}
+// type TGroupReplacement = { id: string; displayName: string };
+// export function buildStateGroups(
+//   productGroups: TProductGroup[] | ISkuMenu[]
+// ): TGroupReplacement[] {
+//   return productGroups.map((group) => ({
+//     id: group.id,
+//     displayName: group.display_name,
+//     ref: group.ref,
+//   }));
+// }
