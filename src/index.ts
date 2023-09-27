@@ -1,1 +1,1 @@
-export { ButtonNami } from "./Button";
+export { PaywallNami } from "./PaywallNami";

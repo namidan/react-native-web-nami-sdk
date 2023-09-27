@@ -1,6 +1,7 @@
 import React from "react";
 
 import { BorderMap, TSegmentPickerItem } from "react-nami";
+import { PaywallStore } from "react-nami";
 import styled, { FlattenSimpleInterpolation, css } from "styled-components";
 
 import {
@@ -14,7 +15,7 @@ import {
 
 type ComponentProps<T> = { component: T; groupId: string | null };
 
-const SegmentPickerItemWrapper = styled.div<{
+const SegmentPickerItemWrapper = styled.button<{
   component: TSegmentPickerItem;
   groupId: string | null;
 }>`
@@ -30,10 +31,18 @@ export function SegmentPickerItem({
   component,
   groupId,
 }: ComponentProps<TSegmentPickerItem>) {
+  const onClick = () => {
+    PaywallStore.checkAndChangeGroupId(groupId ?? "");
+  };
+
   if (!component.text) return null;
 
   return (
-    <SegmentPickerItemWrapper component={component} groupId={groupId}>
+    <SegmentPickerItemWrapper
+      onClick={onClick}
+      component={component}
+      groupId={groupId}
+    >
       {component.text}
     </SegmentPickerItemWrapper>
   );

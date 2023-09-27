@@ -1,17 +1,15 @@
 import React, { useEffect, useMemo } from "react";
 import "react-spring-bottom-sheet/dist/style.css";
 
+import { observer } from "mobx-react";
 import { PaywallStore } from "react-nami";
+import "./PaywallNami.css";
 
-import PaywallPreview from "./components/PaywallPreview";
+import PaywallPreview from "./PaywallPreview";
 import { interpolate } from "./utils/allUtils";
 import { loadFonts } from "./utils/fonts";
 
-interface ButtonProps {
-  label: string;
-}
-
-export const ButtonNami: React.FC<ButtonProps> = () => {
+export const PaywallNami: React.FC = observer(() => {
   const {
     payWall: template,
     launch,
@@ -37,7 +35,7 @@ export const ButtonNami: React.FC<ButtonProps> = () => {
       ...(template.initialState || {}),
       groups,
       launch,
-      currentGroupId: "3f2fcdbf-fe89-49fb-8740-e9efd6234d00",
+      currentGroupId,
       selectedProducts,
       anySkuHasTrialOffer,
       anySkuHasIntroOffer,
@@ -89,10 +87,10 @@ export const ButtonNami: React.FC<ButtonProps> = () => {
         template={parsedTemplate!}
         focusedState={focusedState}
         currentPage={currentPage}
-        groupId={"3f2fcdbf-fe89-49fb-8740-e9efd6234d00"}
+        groupId={currentGroupId}
       />
     );
   };
 
   return <>{renderTemplate()}</>;
-};
+});

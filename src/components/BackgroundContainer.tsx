@@ -30,10 +30,10 @@ const Wrapper = styled.div<Omit<BackgroundContainerProps, "device">>`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  ${({ component, zIndex, fullscreen }) => css`
+  ${({ component, zIndex }) => css`
     z-index: ${zIndex};
-    border-radius: ${fullscreen ? 0 : 30}px;
-    top: ${fullscreen ? 0 : 40}px;
+    border-radius: ${0}px;
+    top: ${0}px;
     ${pickAndApplyBackgroundColor(component)}
     ${transition()}
     ${paddingAndMargin(component)}

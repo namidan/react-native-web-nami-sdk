@@ -2,11 +2,11 @@ import React from "react";
 
 import type { TPaywallTemplate } from "react-nami";
 
-import BackgroundContainer from "./BackgroundContainer";
-import Content from "./Content";
-import Footer from "./Footer";
-import Header from "./Header";
-import MainContainer from "./PaywallPreviewWrapper";
+import BackgroundContainer from "./components/BackgroundContainer";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import MainContainer from "./components/PaywallPreviewWrapper";
 
 type PaywallPreviewProps = {
   template: TPaywallTemplate;

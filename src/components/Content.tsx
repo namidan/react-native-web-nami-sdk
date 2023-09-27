@@ -27,7 +27,6 @@ const Wrapper = styled(Container)<{ zIndex: number }>`
   ::-webkit-scrollbar {
     display: none;
   }
-  cursor: all-scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 `;
