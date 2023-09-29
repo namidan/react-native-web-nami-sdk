@@ -1,10 +1,12 @@
 import React from 'react';
 
-import EditScreenInfo from '../../components/editScreen/EditScreenInfo';
+import {
+  PaywallNami,
+} from 'react-native-web-nami-sdk';
 
 export default function TabTwoScreen() {
   return (
     // @ts-ignore
-    <EditScreenInfo path="app/(tabs)/two.tsx" />
+    <PaywallNami path="app/(tabs)/two.tsx" />
   );
 }
