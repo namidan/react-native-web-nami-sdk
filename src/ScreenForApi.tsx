@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Button, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, View } from "react-native";
 
 import { observer } from "mobx-react";
 import { ApiService, PaywallStore } from "react-nami";
@@ -27,38 +27,42 @@ const mockDeviceConfig = {
 };
 
 export const TestComponentWithButtons = observer((): React.ReactNode => {
+  const [isLoading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
+    setLoading(true);
     Promise.all([
       apiService.fetchConfig(),
       apiService.fetchDevice(mockDeviceConfig),
     ])
       .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+        apiService
+          .fetchCampaignRules()
+          .then((res) => {
+            console.log(res, "onPressCampaignRules");
+            return res;
+          })
+          .catch((i) => console.log(i));
         apiService.fetchPaywalls();
       })
       .catch((i) => console.log(i));
   }, []);
 
-  const onPressCampaignRules = () => {
-    apiService
-      .fetchCampaignRules()
-      .then((res) => {
-        console.log(res, "onPressCampaignRules");
-        return res;
-      })
-      .catch((i) => console.log(i));
-  };
-
   return (
     <View
       style={{ flex: 1, alignItems: "center", justifyContent: "space-around" }}
     >
-      <Button
-        onPress={onPressCampaignRules}
-        title="Load campaigns"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      {PaywallStore.campaignRules && (
-        <CampaignRuleList campaignRules={PaywallStore.campaignRules} />
+      {isLoading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <>
+          {PaywallStore.campaignRules && (
+            <CampaignRuleList campaignRules={PaywallStore.campaignRules} />
+          )}
+        </>
       )}
     </View>
   );
