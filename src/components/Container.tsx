@@ -3,13 +3,17 @@ import type {
   TContainer,
   TContainerPosition,
   TProductContainer,
+  TFlexProductContainer,
 } from "react-nami";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
 import { applyStyles, flexDirection, pickAndApplyBackgroundColor } from "./css";
 
 const Container = styled.div<{
-  component: Omit<TContainer | TProductContainer | TCarouselContainer, "name">;
+  component: Omit<
+    TContainer | TProductContainer | TFlexProductContainer | TCarouselContainer,
+    "name"
+  >;
   inFocusedState?: boolean;
 }>`
   display: flex;

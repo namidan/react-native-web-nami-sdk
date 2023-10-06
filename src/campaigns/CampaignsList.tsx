@@ -24,7 +24,7 @@ export function CampaignRuleList(props: any) {
   );
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={campaignRules}
         renderItem={renderItem}

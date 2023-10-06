@@ -23,6 +23,8 @@ export const PaywallNami: React.FC = observer(() => {
   } = PaywallStore;
   const focusedState = true;
 
+  // console.log(template, "template");
+
   useEffect(() => {
     loadFonts(currentFontsArray);
   }, [currentFontsArray]);

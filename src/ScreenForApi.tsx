@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 
 import { observer } from "mobx-react";
-import { ApiService, PaywallStore } from "react-nami";
+import { ApiService, PaywallStore, DeviceInfoStore } from "react-nami";
 
 import { CampaignRuleList } from "./campaigns/CampaignsList";
-
-const apiService = new ApiService({
-  platformID: "4a2f6dbf-e684-4d65-a4df-0488771c577d",
-});
 
 const mockDeviceConfig = {
   device_model: "iPad",
@@ -27,6 +23,11 @@ const mockDeviceConfig = {
 };
 
 export const TestComponentWithButtons = observer((): React.ReactNode => {
+  const apiService = new ApiService({
+    platformID: DeviceInfoStore.isAndroid
+      ? "b7232eba-ff1d-4b7f-b8d0-55593b66c1d5"
+      : "4a2f6dbf-e684-4d65-a4df-0488771c577d",
+  });
   const [isLoading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
