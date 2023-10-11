@@ -16,6 +16,7 @@ export function CampaignRuleList(props: any) {
     <TouchableOpacity
       onPress={() => {
         PaywallStore.setSelectedPaywallId(item.paywall);
+        props.callback();
       }}
       style={styles.buttonContainer}
     >

@@ -1,9 +1,10 @@
 import React from "react";
 
 import { PaywallStore, type TFlexProductContainer } from "react-nami";
-import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+import styled from "styled-components";
 
 import Container from "./Container";
+import { transition } from "./css";
 import TemplateComponent from "./templateComponent";
 import { FeaturedContext } from "../contexts/context";
 
@@ -18,25 +19,25 @@ const Wrapper = styled(Container)<{ flexDirectionData: any }>`
   display: flex;
   justify-content: center;
 
-  @media (max-width: 600px) {
-    flex-direction: ${(props) => props.flexDirectionData.small || "row"};
+  @media (max-width: 510px) {
+    // TODO: Temp solution
+    row-gap: 24px;
   }
-  @media (min-width: 601px) and (max-width: 1024px) {
-    flex-direction: ${(props) => props.flexDirectionData.medium || "row"};
+  @media (max-width: 825px) {
+    flex-direction: ${(props) => props.flexDirectionData.small && "column"};
+    // TODO: Temp solution
+    row-gap: 24px;
   }
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    flex-direction: ${(props) => props.flexDirectionData.large || "row"};
+  @media (min-width: 1000px) and (max-width: 1024px) {
+    flex-direction: ${(props) => props.flexDirectionData.medium && "row"};
   }
-  @media (min-width: 1441px) {
-    flex-direction: ${(props) => props.flexDirectionData.xlarge || "row"};
+  @media (min-width: 1200px) and (max-width: 1440px) {
+    flex-direction: ${(props) => props.flexDirectionData.large && "row"};
+  }
+  @media (min-width: 1600px) {
+    flex-direction: ${(props) => props.flexDirectionData.xlarge && "row"};
   }
 `;
-
-function transition(): FlattenSimpleInterpolation {
-  return css`
-    transition: all 0.3s;
-  `;
-}
 
 export default function FlexProductContainer({
   component,
@@ -44,7 +45,6 @@ export default function FlexProductContainer({
   groupId,
 }: ComponentProps<TFlexProductContainer>): JSX.Element {
   const components = PaywallStore.processProductComponents(component, groupId);
-  console.log(component);
   return (
     <Wrapper
       flexDirectionData={component.flexDirection}

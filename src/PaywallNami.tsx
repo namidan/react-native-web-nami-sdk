@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from "react";
+import { View, Text } from "react-native";
 import "react-spring-bottom-sheet/dist/style.css";
 
 import { observer } from "mobx-react";
@@ -94,5 +95,30 @@ export const PaywallNami: React.FC = observer(() => {
     );
   };
 
-  return <>{renderTemplate()}</>;
+  return (
+    <>
+      {template ? (
+        renderTemplate()
+      ) : (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 24,
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            Please select paywall to show
+          </Text>
+        </View>
+      )}
+    </>
+  );
 });

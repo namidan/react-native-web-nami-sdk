@@ -43,6 +43,15 @@ const Container = styled.div<{
 
         &:not(:first-child) {
           ${spaceKey}: ${component.spacing || 0}px;
+
+          // TODO: Temp solution;
+          @media (max-width: 825px) {
+            margin-left: 0px;
+          }
+          @media (max-width: 510px) {
+            padding-left: 6px;
+            padding-right: 6px;
+          }
         }
       }
     `;
