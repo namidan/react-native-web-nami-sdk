@@ -3,13 +3,17 @@ import type {
   TContainer,
   TContainerPosition,
   TProductContainer,
+  TFlexProductContainer,
 } from "react-nami";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
 import { applyStyles, flexDirection, pickAndApplyBackgroundColor } from "./css";
 
 const Container = styled.div<{
-  component: Omit<TContainer | TProductContainer | TCarouselContainer, "name">;
+  component: Omit<
+    TContainer | TProductContainer | TFlexProductContainer | TCarouselContainer,
+    "name"
+  >;
   inFocusedState?: boolean;
 }>`
   display: flex;
@@ -39,6 +43,15 @@ const Container = styled.div<{
 
         &:not(:first-child) {
           ${spaceKey}: ${component.spacing || 0}px;
+
+          // TODO: Temp solution;
+          @media (max-width: 825px) {
+            margin-left: 0px;
+          }
+          @media (max-width: 510px) {
+            padding-left: 6px;
+            padding-right: 6px;
+          }
         }
       }
     `;

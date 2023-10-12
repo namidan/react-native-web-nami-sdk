@@ -16,6 +16,7 @@ export function CampaignRuleList(props: any) {
     <TouchableOpacity
       onPress={() => {
         PaywallStore.setSelectedPaywallId(item.paywall);
+        props.callback();
       }}
       style={styles.buttonContainer}
     >
@@ -24,7 +25,7 @@ export function CampaignRuleList(props: any) {
   );
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={campaignRules}
         renderItem={renderItem}

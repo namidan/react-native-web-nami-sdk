@@ -4,6 +4,7 @@ import type { TComponent, TConditionalComponent } from "react-nami";
 
 import Button from "./button.component";
 import Container from "./Container";
+import FlexProductContainer from "./FlexProductContainer";
 import Image from "./Image";
 import ProductContainer from "./ProductContainer";
 import SegmentPicker from "./SegmentPicker";
@@ -42,6 +43,7 @@ const COMPONENTS_MAP: ComponentsMapType = {
   "text-list": TextList,
   container: Container,
   productContainer: ProductContainer,
+  flexProductContainer: FlexProductContainer,
   image: Image,
   segmentPicker: SegmentPicker,
   segmentPickerItem: SegmentPickerItem,
