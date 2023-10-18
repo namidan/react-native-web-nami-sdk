@@ -11,7 +11,9 @@ import SegmentPicker from "./SegmentPicker";
 import { SegmentPickerItem } from "./SegmentPickerItem";
 import Spacer from "./spacer.component";
 import Stack from "./Stack";
+import SvgImage from "./SvgImage";
 import { Text, Symbol, TextList } from "./text.component";
+import Video from "./Video";
 import { ComponentContext, FeaturedContext } from "../contexts/context";
 import {
   conditionComponentMatches,
@@ -47,8 +49,8 @@ const COMPONENTS_MAP: ComponentsMapType = {
   image: Image,
   segmentPicker: SegmentPicker,
   segmentPickerItem: SegmentPickerItem,
-  // videoUrl: Image,
-  // svgImage: SvgImage,
+  videoUrl: Video,
+  svgImage: SvgImage,
   // carouselContainer: CarouselContainer,
 };
 
