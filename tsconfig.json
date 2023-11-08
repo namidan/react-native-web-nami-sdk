@@ -5,9 +5,9 @@
       "react-native-web-nami-sdk": [
         "./src/index"
       ],
-      "react-nami": [
-        "../react-nami/src/index"
-      ]
+//      "react-nami": [
+//        "../react-nami/src/index"
+//      ]
     },
     "outDir": "./dist/",
     "sourceMap": true,

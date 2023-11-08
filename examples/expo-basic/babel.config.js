@@ -6,9 +6,9 @@ module.exports = function(api) {
       'expo-router/babel',
       ['module-resolver', {
         alias: {
-          'react-native-web-nami-sdk': '../../src',
-          'react-nami': '../../../react-nami/src'
-        }
+           // 'react-native-web-nami-sdk': '../../src',
+           // 'react-nami': '../../../react-nami/src'
+        },
       }]
     ]
   };

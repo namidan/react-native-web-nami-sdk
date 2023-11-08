@@ -1,6 +1,11 @@
 import React, { useContext, useMemo } from "react";
 
 import type { TComponent, TConditionalComponent } from "react-nami";
+import {
+  conditionComponentMatches,
+  interpolate,
+  withOverrides,
+} from "react-nami";
 
 import Button from "./button.component";
 import Container from "./Container";
@@ -15,11 +20,6 @@ import SvgImage from "./SvgImage";
 import { Text, Symbol, TextList } from "./text.component";
 import Video from "./Video";
 import { ComponentContext, FeaturedContext } from "../contexts/context";
-import {
-  conditionComponentMatches,
-  interpolate,
-  withOverrides,
-} from "../utils/allUtils";
 
 type ComponentProps<T> = {
   component: T;

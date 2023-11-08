@@ -1,4 +1,4 @@
-const path = require("path");
+//const path = require("path");
 
 module.exports = {
   entry: "./src/index.ts",
@@ -20,7 +20,7 @@ module.exports = {
     ],
     alias: {
       "react-native$": "react-native-web",
-      "react-nami": path.resolve(__dirname, "../react-nami/src/index"),
+      // "react-nami": path.resolve(__dirname, "../react-nami/src/index"),
     },
   },
   module: {

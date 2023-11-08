@@ -1,5 +1,4 @@
 export type TFont = {
-  id: string;
   family: string;
   style: string;
   file: string;
@@ -16,9 +15,20 @@ export function loadFonts(fonts: TFont[]): Promise<FontFaceSet> {
     const fontFace = new FontFace(name, `url(${font.file})`);
     document.fonts.add(fontFace);
   });
-
-  // eslint-disable-next-line promise/valid-params,promise/prefer-await-to-then
   return document.fonts.ready.then();
+}
+
+// This function converts the fonts object to an array and then calls loadFonts
+export function prepareAndLoadFonts(fontsObject: {
+  [key: string]: any;
+}): Promise<FontFaceSet> {
+  const fontsArray: TFont[] = Object.values(fontsObject).map((font) => ({
+    family: font.family,
+    style: font.style,
+    file: font.file,
+  }));
+
+  return loadFonts(fontsArray);
 }
 
 export function buildFontFaceFamily(font: TFont): string {

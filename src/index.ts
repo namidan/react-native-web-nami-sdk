@@ -1,2 +1,2 @@
 export { PaywallNami } from "./PaywallNami";
-export { TestComponentWithButtons } from "./ScreenForApi";
+export { PaywallProvider, usePaywallContext } from "./PaywallProvider";

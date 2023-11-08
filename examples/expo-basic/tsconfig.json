@@ -3,10 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-web-nami-sdk": ["../../src/index"],
-      "react-nami": ["../../../react-nami/src/index"]
+//      "react-native-web-nami-sdk": ["../../src/index"],
+//      "react-nami": ["../../../react-nami/src/index"]
     },
-    "target": "esnext",
+    "lib": ["es6", "DOM"],
+    "target": "es6",
+    "module": "esnext",
     "jsx": "react-native",
     "strict": true,
     "allowJs": true,

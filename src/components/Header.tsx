@@ -33,7 +33,6 @@ export default function Header({
   inFullScreen,
   groupId,
 }: HeaderProps) {
-  // console.log(components, "HEADER components");
   return (
     <Wrapper
       zIndex={zIndex}
