@@ -1,8 +1,10 @@
 import React from "react";
 
-import { PaywallStore, type TFlexProductContainer } from "react-nami";
+import type { TFlexProductContainer } from "react-nami";
+import { processProductComponents } from "react-nami";
 import styled from "styled-components";
 
+import { usePaywallContext } from "./../PaywallProvider";
 import Container from "./Container";
 import { transition } from "./css";
 import TemplateComponent from "./templateComponent";
@@ -44,7 +46,12 @@ export default function FlexProductContainer({
   inFocusedState,
   groupId,
 }: ComponentProps<TFlexProductContainer>): JSX.Element {
-  const components = PaywallStore.processProductComponents(component, groupId);
+  const { selectedPaywall } = usePaywallContext();
+  const components = processProductComponents(
+    component,
+    groupId,
+    selectedPaywall
+  );
   return (
     <Wrapper
       flexDirectionData={component.flexDirection}

@@ -1,6 +1,7 @@
 import React from "react";
 
 import type { TContainer } from "react-nami";
+import { withOverrides } from "react-nami";
 import styled, { css } from "styled-components";
 
 import {
@@ -9,7 +10,6 @@ import {
   transition,
 } from "./css";
 import TemplateComponent from "./templateComponent";
-import { withOverrides } from "../utils/allUtils";
 
 type BackgroundContainerProps = {
   component: TContainer;

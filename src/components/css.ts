@@ -146,7 +146,7 @@ export function dropShadow(
   `;
 }
 
-function parseSize(value: "fitContent" | `${number}%` | number): string {
+function parseSize(value: string | number): string {
   let output;
   if (typeof value === "number") {
     output = `${value}px`;

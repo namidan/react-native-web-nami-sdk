@@ -1,8 +1,10 @@
 import React from "react";
 
-import { PaywallStore, type TProductContainer } from "react-nami";
+import type { TProductContainer } from "react-nami";
+import { processProductComponents } from "react-nami";
 import styled from "styled-components";
 
+import { usePaywallContext } from "./../PaywallProvider";
 import Container from "./Container";
 import { transition } from "./css";
 import TemplateComponent from "./templateComponent";
@@ -25,7 +27,13 @@ export default function ProductContainer({
   inFocusedState,
   groupId,
 }: ComponentProps<TProductContainer>): JSX.Element {
-  const components = PaywallStore.processProductComponents(component, groupId);
+  const { selectedPaywall } = usePaywallContext();
+  const components = processProductComponents(
+    component,
+    groupId,
+    selectedPaywall
+  );
+
   return (
     <Wrapper component={component} inFocusedState={inFocusedState}>
       {components.map(([featured, children], i) => {

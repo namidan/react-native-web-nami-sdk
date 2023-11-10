@@ -1,41 +1,36 @@
 import React, { useEffect, useMemo } from "react";
-import { View, Text } from "react-native";
 import "react-spring-bottom-sheet/dist/style.css";
 
-import { observer } from "mobx-react";
-import { PaywallStore } from "react-nami";
 import "./PaywallNami.css";
 
-import PaywallPreview from "./PaywallPreview";
-import { interpolate } from "./utils/allUtils";
-import { loadFonts } from "./utils/fonts";
+import { interpolate } from "react-nami";
 
-export const PaywallNami: React.FC = observer(() => {
+import PaywallPreview from "./PaywallPreview";
+import { usePaywallContext } from "./PaywallProvider";
+import { prepareAndLoadFonts } from "./utils/fonts";
+
+export const PaywallNami: React.FC = () => {
   const {
-    payWall: template,
+    selectedPaywall: { template, fonts },
     launch,
-    initialState: { groups, selectedProducts, currentPage, currentGroupId },
+    initialStateData: { groups, selectedProducts, currentPage, currentGroupId },
     skuHasOffer: {
       anySkuHasTrialOffer,
       anySkuHasIntroOffer,
       anySkuHasPromoOffer,
     },
-    currentFontsArray,
-  } = PaywallStore;
+  }: any = usePaywallContext();
+
   const focusedState = true;
 
-  // console.log(template, "template");
-
   useEffect(() => {
-    loadFonts(currentFontsArray);
-  }, [currentFontsArray]);
+    prepareAndLoadFonts(fonts);
+  }, [fonts]);
 
   const parsedTemplate = useMemo(() => {
     if (template === null) return null;
-    // TODO: Do we need citation?
-    // const citation = citations[language] || citations[defaultLanguage] || null;
     const state = {
-      ...(template.initialState || {}),
+      ...(template!.initialState ?? {}),
       groups,
       launch,
       currentGroupId,
@@ -44,7 +39,7 @@ export const PaywallNami: React.FC = observer(() => {
       anySkuHasIntroOffer,
       anySkuHasPromoOffer,
       currentPage,
-      // TODO obtain this later;
+      // TODO obtain this;
       focusedState,
       safeAreaTop: 40,
       isLoggedIn: false,
@@ -84,6 +79,7 @@ export const PaywallNami: React.FC = observer(() => {
     // isLoggedIn,
     // customer,
   ]);
+
   const renderTemplate = () => {
     return (
       <PaywallPreview
@@ -100,25 +96,25 @@ export const PaywallNami: React.FC = observer(() => {
       {template ? (
         renderTemplate()
       ) : (
-        <View
+        <div
           style={{
-            flex: 1,
+            display: "flex",
             justifyContent: "center",
             flexDirection: "row",
             alignItems: "center",
+            height: "100vh",
           }}
         >
-          <Text
+          <p
             style={{
-              fontSize: 24,
-              justifyContent: "center",
-              alignContent: "center",
+              fontSize: "24px",
+              textAlign: "center",
             }}
           >
             Please select paywall to show
-          </Text>
-        </View>
+          </p>
+        </div>
       )}
     </>
   );
-});
+};

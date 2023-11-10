@@ -1,7 +1,6 @@
 import React from "react";
 
 import { BorderMap, TSegmentPickerItem } from "react-nami";
-import { PaywallStore } from "react-nami";
 import styled, { FlattenSimpleInterpolation, css } from "styled-components";
 
 import {
@@ -12,6 +11,7 @@ import {
   transition,
   widthAndHeight,
 } from "./css";
+import { usePaywallContext } from "../PaywallProvider";
 
 type ComponentProps<T> = { component: T; groupId: string | null };
 
@@ -31,8 +31,9 @@ export function SegmentPickerItem({
   component,
   groupId,
 }: ComponentProps<TSegmentPickerItem>) {
+  const { checkAndChangeGroupId }: any = usePaywallContext();
   const onClick = () => {
-    PaywallStore.checkAndChangeGroupId(groupId ?? "");
+    checkAndChangeGroupId(groupId);
   };
 
   if (!component.text) return null;

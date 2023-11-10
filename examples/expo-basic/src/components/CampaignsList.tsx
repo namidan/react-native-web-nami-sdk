@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 import {
   FlatList,
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
-} from "react-native";
-
-import { PaywallStore } from "react-nami";
+} from 'react-native';
+//@ts-ignore
+import { usePaywallContext } from 'react-native-web-nami-sdk';
 
 export function CampaignRuleList(props: any) {
   const { campaignRules } = props;
+  const { setPaywallId } : any = usePaywallContext();
 
   const renderItem = ({ item }: { item: any }) => (
     <TouchableOpacity
       onPress={() => {
-        PaywallStore.setSelectedPaywallId(item.paywall);
-        props.callback();
+        setPaywallId(item.paywall)
       }}
       style={styles.buttonContainer}
     >
@@ -37,14 +37,14 @@ export function CampaignRuleList(props: any) {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    backgroundColor: "#007AFF", // Change to your preferred button background color
-    padding: 16, // Adjust padding for button size
-    borderRadius: 8, // Adjust border radius for button shape
-    marginBottom: 12, // Adjust margin between buttons
-    alignItems: "center", // Center text horizontally
+    backgroundColor: '#007AFF',
+    padding: 16,
+    borderRadius: 8,
+    marginBottom: 12,
+    alignItems: 'center',
   },
   buttonText: {
-    color: "#FFFFFF", // Change to your preferred text color
-    fontSize: 18, // Adjust font size
+    color: '#FFFFFF',
+    fontSize: 18,
   },
 });

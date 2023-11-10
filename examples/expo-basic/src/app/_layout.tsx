@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
-import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
+import { usePaywall } from 'react-nami';
+//@ts-ignore
+import { PaywallProvider } from 'react-native-web-nami-sdk';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -21,18 +23,24 @@ SplashScreen.preventAutoHideAsync();
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const { state, actions } = usePaywall('4a2f6dbf-e684-4d65-a4df-0488771c577d');
+  console.log(state, 'usePaywall')
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen
-          name='index'
-          options={{ headerShown: false }} />
-        <Stack.Screen
-          name="details"
-          options={{ headerShown: false }}
-        />
-      </Stack>
+      <PaywallProvider
+        state={state}
+        actions={actions}>
+        <Stack>
+          <Stack.Screen
+            name='index'
+            options={{ headerShown: false }} />
+          <Stack.Screen
+            name="details"
+            options={{ headerShown: false }}
+          />
+        </Stack>
+      </PaywallProvider>
     </ThemeProvider>
   );
 }
@@ -58,5 +66,7 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <RootLayoutNav />
+  );
 }

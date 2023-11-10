@@ -16,8 +16,14 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
+    "react-nami": "file:/Users/vladbataev/WebstormProjects/nami/react-nami/react-nami-0.0.2alpha0.4.9.0.tgz",
+    "react-native-web-nami-sdk": "file:/Users/vladbataev/WebstormProjects/nami/react-native-web-nami-sdk/react-native-web-nami-sdk-0.0.1alpha0.0.5.tgz",
     "@react-navigation/native": "^6.0.2",
     "style-to-object": "^0.4.2",
+    "mobx": "^6.10.0",
+    "mobx-react": "^9.0.0",
+    "mobx-utils": "^6.0.8",
+    "react-device-detect": "2.2.3",
     "expo": "~49.0.7",
     "expo-font": "~11.4.0",
     "expo-linking": "~5.0.2",
@@ -36,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@types/react": "~18.2.14",
+    "@types/react": "^18.2.33",
     "@react-native-community/eslint-config": "^3.2.0",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",

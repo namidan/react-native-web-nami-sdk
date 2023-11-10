@@ -22,23 +22,23 @@ const config = {
 
   watchFolders: [
     ...defaultConfig.watchFolders,
-    path.resolve(__dirname, '../..'),
-    path.resolve(__dirname, '../../../react-nami')
+    // path.resolve(__dirname, '../..'),
+    // path.resolve(__dirname, '../../../react-nami')
   ],
   resolver: {
     ...defaultConfig.resolver,
-    blacklistRE: blacklist(
-        modules.map(
-            (m) =>
-                new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)
-        )
-    ),
-    extraNodeModules: modules.reduce((acc, name) => {
-      acc[name] = path.join(__dirname, 'node_modules', name);
-      return acc;
-    }, {}),
+    // blacklistRE: blacklist(
+    //     modules.map(
+    //         (m) =>
+    //             new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)
+    //     )
+    // ),
+    // extraNodeModules: modules.reduce((acc, name) => {
+    //   acc[name] = path.join(__dirname, 'node_modules', name);
+    //   return acc;
+    // }, {}),
     // Adding 'mjs' to the list of file extensions for react-markdown package
-    sourceExts: [...(defaultConfig.resolver.sourceExts || []), 'mjs']
+    sourceExts: [...(defaultConfig.resolver.sourceExts || []), 'mjs', 'jsx', 'js', 'ts', 'tsx', 'cjs', 'json']
   },
 
   transformer: {
