@@ -1,37 +1,36 @@
-import { TBaseComponent, BorderMap, TTextLikeComponent } from "react-nami";
-import { css, FlattenSimpleInterpolation } from "styled-components";
+import { TBaseComponent, BorderMap, TTextLikeComponent } from 'react-nami';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 
 const ALIGNMENT_MAP: { [key: string]: string } = {
-  top: "start",
-  left: "start",
-  right: "end",
-  bottom: "end",
-  center: "center",
+  top: 'start',
+  left: 'start',
+  right: 'end',
+  bottom: 'end',
+  center: 'center',
 };
 
-export function applyStyles(
-  component: TBaseComponent,
-  inFocusedState?: boolean
-): FlattenSimpleInterpolation {
-  return css`
-    ${transition()}
-    ${grow(component)}
-    ${paddingAndMargin(component)}
-    ${transform(component)}
-    ${borders(component, inFocusedState)}
-    ${alignItems(component)}
-    ${justifyContent(component)}
-    ${widthAndHeight(component)}
-    ${dropShadow(component)}
-  `;
+function parseSize(value: string | number): string {
+  let output;
+  if (typeof value === 'number') {
+    output = `${value}px`;
+  } else {
+    output = value === 'fitContent' ? 'fit-content' : value;
+  }
+  return `${output} !important`; // This is because of Container's children size
+}
+
+export function backgroundColor(value: string): string {
+  return value.includes('gradient')
+    ? `background-image: ${value};`
+    : `background-color: ${value};`;
 }
 
 export function flexDirection({ direction }: TBaseComponent): string {
-  return `flex-direction: ${direction === "vertical" ? "column" : "row"};`;
+  return `flex-direction: ${direction === 'vertical' ? 'column' : 'row'};`;
 }
 
 export function grow({ grow }: TBaseComponent): string {
-  return grow ? "flex-grow: 1;" : "";
+  return grow ? 'flex-grow: 1;' : '';
 }
 
 export function transform({
@@ -40,8 +39,8 @@ export function transform({
 }: TBaseComponent): FlattenSimpleInterpolation | string {
   return css`
     transform: translate(
-      ${typeof moveX === "number" ? `${moveX}px` : moveX},
-      ${typeof moveY === "number" ? `${moveY}px` : moveY}
+      ${typeof moveX === 'number' ? `${moveX}px` : moveX},
+      ${typeof moveY === 'number' ? `${moveY}px` : moveY}
     );
   `;
 }
@@ -82,15 +81,15 @@ export function borders(
   const roundBorders = component.roundBorders || [];
   const borders = roundBorders.length
     ? roundBorders
-        .map((border) => `${BorderMap[border]}: ${radius}px;`)
-        .join("\n")
+      .map((border) => `${BorderMap[border]}: ${radius}px;`)
+      .join('\n')
     : `border-radius: ${radius}px;`;
   const borderWidth =
     inFocusedState && component.focusedBorderWidth
       ? component.focusedBorderWidth
       : component.borderWidth || 0;
   return css`
-    border-color: ${color ? `${color} !important` : "transparent"};
+    border-color: ${color ? `${color} !important` : 'transparent'};
     border-width: ${borderWidth}px !important;
     border-style: solid;
     ${borders}
@@ -101,7 +100,7 @@ export function alignItems({
   alignment,
 }: TBaseComponent): FlattenSimpleInterpolation | string {
   return css`
-    align-items: ${(alignment && ALIGNMENT_MAP[alignment]) || "center"};
+    align-items: ${(alignment && ALIGNMENT_MAP[alignment]) || 'center'};
   `;
 }
 
@@ -109,12 +108,12 @@ export function justifyContent({
   alignment,
 }: TBaseComponent): FlattenSimpleInterpolation | string {
   return css`
-    justify-content: ${(alignment && ALIGNMENT_MAP[alignment]) || "center"};
+    justify-content: ${(alignment && ALIGNMENT_MAP[alignment]) || 'center'};
   `;
 }
 
 export function font({ fontName }: TTextLikeComponent): string {
-  const [font] = (fontName || "").split("-");
+  const [font] = (fontName || '').split('-');
   return `font-family: '${fontName}', '${font}', 'Helvetica';`;
 }
 
@@ -125,8 +124,8 @@ export function widthAndHeight(
   const height = component.height || component.fixedHeight;
   return css`
     max-width: 100%;
-    ${typeof width !== "undefined" ? `width: ${parseSize(width)};` : ""}
-    ${typeof height !== "undefined" ? `height: ${parseSize(height)};` : ""}
+    ${typeof width !== 'undefined' ? `width: ${parseSize(width)};` : ''}
+    ${typeof height !== 'undefined' ? `height: ${parseSize(height)};` : ''}
   `;
 }
 
@@ -135,8 +134,8 @@ export function dropShadow(
 ): FlattenSimpleInterpolation {
   if (!component.dropShadow) return css``;
   const regex = new RegExp(
-    "([0-9]+)\\s([0-9]+)\\s([0-9]+)\\s(rgba?\\([0-9\\s\\/.]+\\))",
-    "gi"
+    '([0-9]+)\\s([0-9]+)\\s([0-9]+)\\s(rgba?\\([0-9\\s\\/.]+\\))',
+    'gi'
   );
   const dropShadowMatch = regex.exec(component.dropShadow);
   if (!dropShadowMatch || dropShadowMatch.length !== 5) return css``;
@@ -146,33 +145,17 @@ export function dropShadow(
   `;
 }
 
-function parseSize(value: string | number): string {
-  let output;
-  if (typeof value === "number") {
-    output = `${value}px`;
-  } else {
-    output = value === "fitContent" ? "fit-content" : value;
-  }
-  return `${output} !important`; // This is because of Container's children size
-}
-
 export function pickAndApplyBackgroundColor(
   component: TBaseComponent,
   inFocusedState?: boolean
 ): string {
   if (inFocusedState && component.focusedFillColor)
     return backgroundColor(component.focusedFillColor);
-  return backgroundColor(component.fillColor || "transparent");
-}
-
-export function backgroundColor(value: string): string {
-  return value.includes("gradient")
-    ? `background-image: ${value};`
-    : `background-color: ${value};`;
+  return backgroundColor(component.fillColor || 'transparent');
 }
 
 export function backgroundImage(value: string | null): string {
-  return value == null ? "" : `background-image: url(${value});`;
+  return value == null ? '' : `background-image: url(${value});`;
 }
 
 export function strikethrough(
@@ -182,5 +165,22 @@ export function strikethrough(
   return css`
     text-decoration: line-through;
     text-decoration-thickness: auto;
+  `;
+}
+
+export function applyStyles(
+  component: TBaseComponent,
+  inFocusedState?: boolean
+): FlattenSimpleInterpolation {
+  return css`
+    ${transition()}
+    ${grow(component)}
+    ${paddingAndMargin(component)}
+    ${transform(component)}
+    ${borders(component, inFocusedState)}
+    ${alignItems(component)}
+    ${justifyContent(component)}
+    ${widthAndHeight(component)}
+    ${dropShadow(component)}
   `;
 }

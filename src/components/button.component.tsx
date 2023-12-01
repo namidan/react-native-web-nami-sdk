@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import type { TButtonContainer } from "react-nami";
-import styled, { css } from "styled-components";
+import type { TButtonContainer } from 'react-nami';
+import styled, { css } from 'styled-components';
 
-import { applyStyles, flexDirection, pickAndApplyBackgroundColor } from "./css";
-import TemplateComponent from "./templateComponent";
+import { applyStyles, flexDirection, pickAndApplyBackgroundColor } from './css';
+import TemplateComponent from './templateComponent';
 
 // Update StyledButton to accept an isPressed prop
 const ButtonWrapper = styled.button<{
@@ -16,7 +16,7 @@ const ButtonWrapper = styled.button<{
     ${pickAndApplyBackgroundColor(component, inFocusedState)}
     ${flexDirection(component)}
     ${applyStyles(component, inFocusedState)}
-    ${isPressed ? "opacity: 0.8;" : "opacity: 1;"}
+    ${isPressed ? 'opacity: 0.8;' : 'opacity: 1;'}
   `}
 `;
 
@@ -45,6 +45,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick();
     }
   };
+
   return (
     <ButtonWrapper
       component={component}

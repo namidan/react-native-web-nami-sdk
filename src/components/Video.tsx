@@ -1,11 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import type { TVideoComponent } from "react-nami";
-import styled, { css } from "styled-components";
+import type { TVideoComponent } from 'react-nami';
+import styled, { css } from 'styled-components';
 
-import { transition } from "./css";
+import { transition } from './css';
 
 type VideoProps = { component: TVideoComponent };
+
+function parseSize(value: undefined | string | number): string {
+  if (typeof value === 'undefined') return '100%';
+  return typeof value === 'number' ? `${value}px` : value;
+}
 
 const Wrapper = styled.div<VideoProps>`
   pointer-events: none;
@@ -22,7 +27,7 @@ const Wrapper = styled.div<VideoProps>`
       width,
     },
   }) => {
-    const fit = imageCropping === "fit";
+    const fit = imageCropping === 'fit';
     return css`
       position: relative;
       overflow: hidden;
@@ -32,7 +37,7 @@ const Wrapper = styled.div<VideoProps>`
 
       video {
         position: absolute;
-        object-fit: ${fit ? "contain" : "cover"};
+        object-fit: ${fit ? 'contain' : 'cover'};
         object-position: center;
         top: 0;
         left: 0;
@@ -52,9 +57,4 @@ export default function Video({ component }: VideoProps) {
       </video>
     </Wrapper>
   ) : null;
-}
-
-function parseSize(value: undefined | string | number): string {
-  if (typeof value === "undefined") return "100%";
-  return typeof value === "number" ? `${value}px` : value;
 }

@@ -1,0 +1,28 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html --port 3001",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "react-app-polyfill": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.17",
+    "styled-components": "^5.2.0",
+    "@ant-design/icons": "^4.7.0",
+    "react-markdown": "^8.0.7",
+    "react-svg": "^16.1.29",
+    "react-nami": "file:/Users/vladbataev/WebstormProjects/nami/react-nami/react-nami-0.1.6.tgz",
+    "react-native-web-nami-sdk": "file:/Users/vladbataev/WebstormProjects/nami/react-native-web-nami-sdk/react-native-web-nami-sdk-0.1.8.tgz"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.0.0 <7.4.0",
+    "parcel": "1.12.3",
+    "typescript": "^3.4.5"
+  }
+}

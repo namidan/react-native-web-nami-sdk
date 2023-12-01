@@ -1,35 +1,15 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-//      "react-native-web-nami-sdk": ["../../src/index"],
-//      "react-nami": ["../../../react-nami/src/index"]
-    },
-    "lib": ["es6", "DOM"],
-    "target": "es6",
-    "module": "esnext",
-    "jsx": "react-native",
+    "jsx": "react",
     "strict": true,
-    "allowJs": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
+    "module": "esnext",
+    "moduleResolution": "node"
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
+    "expo-env.d.ts"
   ]
 }

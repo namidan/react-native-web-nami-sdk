@@ -1,7 +1,7 @@
-import type { TStack } from "react-nami";
-import styled from "styled-components";
+import type { TStack } from 'react-nami';
+import styled from 'styled-components';
 
-import Container from "./Container";
+import Container from './Container';
 
 type StackProps = { component: TStack };
 

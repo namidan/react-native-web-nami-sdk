@@ -3,6 +3,14 @@ export type TFont = {
   style: string;
   file: string;
 };
+
+export function sanitizeFontName(value: string): string {
+  return value.replace(/ /g, '');
+}
+export function buildFontFaceFamily(font: TFont): string {
+  return sanitizeFontName(`${font.family}-${font.style}`);
+}
+
 export function loadFonts(fonts: TFont[]): Promise<FontFaceSet> {
   const existingFonts = new Set(
     Array.from(document.fonts.values()).map(
@@ -29,12 +37,4 @@ export function prepareAndLoadFonts(fontsObject: {
   }));
 
   return loadFonts(fontsArray);
-}
-
-export function buildFontFaceFamily(font: TFont): string {
-  return sanitizeFontName(`${font.family}-${font.style}`);
-}
-
-export function sanitizeFontName(value: string): string {
-  return value.replace(/ /g, "");
 }

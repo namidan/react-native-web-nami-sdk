@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import type { TProductContainer } from "react-nami";
-import { processProductComponents } from "react-nami";
-import styled from "styled-components";
+import type { TProductContainer } from 'react-nami';
+import { processProductComponents } from 'react-nami';
+import styled from 'styled-components';
 
-import { usePaywallContext } from "./../PaywallProvider";
-import Container from "./Container";
-import { transition } from "./css";
-import TemplateComponent from "./templateComponent";
-import { FeaturedContext } from "../contexts/context";
+import { usePaywallContext } from '../PaywallProvider';
+import Container from './Container';
+import { transition } from './css';
+import TemplateComponent from './templateComponent';
+import { FeaturedContext } from '../contexts/context';
 
 type ComponentProps<T> = {
   component: T;

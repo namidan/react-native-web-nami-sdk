@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import type { TComponent } from "react-nami";
-import styled, { css } from "styled-components";
+import type { TComponent } from 'react-nami';
+import styled, { css } from 'styled-components';
 
-import { transition } from "./css";
-import TemplateComponent from "./templateComponent";
+import { transition } from './css';
+import TemplateComponent from './templateComponent';
 
 type HeaderProps = {
   components: TComponent[];
@@ -14,7 +14,7 @@ type HeaderProps = {
   groupId: string | null;
 };
 
-const Wrapper = styled.div<Omit<HeaderProps, "components">>`
+const Wrapper = styled.div<Omit<HeaderProps, 'components'>>`
   display: flex;
   width: 100%;
   ${({ inFullScreen }) => css`

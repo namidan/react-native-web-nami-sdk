@@ -1,7 +1,7 @@
-import type { TSpacerComponent } from "react-nami";
-import styled, { css } from "styled-components";
+import type { TSpacerComponent } from 'react-nami';
+import styled, { css } from 'styled-components';
 
-import { applyStyles } from "./css";
+import { applyStyles } from './css';
 
 const Spacer = styled.div<{ component: TSpacerComponent }>`
   ${({ component }) => {
@@ -11,7 +11,7 @@ const Spacer = styled.div<{ component: TSpacerComponent }>`
       component.width ||
       component.fixedWidth;
     return css`
-      ${hasWidthOrHeight ? "" : "flex-grow: 1;"}
+      ${hasWidthOrHeight ? '' : 'flex-grow: 1;'}
       ${applyStyles(component)}
     `;
   }}
