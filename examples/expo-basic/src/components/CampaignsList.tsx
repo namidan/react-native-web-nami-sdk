@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-//@ts-ignore
 import { usePaywallContext } from 'react-native-web-nami-sdk';
 
 export function CampaignRuleList(props: any) {

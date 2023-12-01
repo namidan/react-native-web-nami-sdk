@@ -1,12 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import type { TSvgImageComponent } from "react-nami";
-import { ReactSVG } from "react-svg";
-import styled, { FlattenSimpleInterpolation, css } from "styled-components";
+import type { TSvgImageComponent } from 'react-nami';
+import { ReactSVG } from 'react-svg';
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
 
-import { transition } from "./css";
+import { transition } from './css';
 
 type ImageProps = { component: TSvgImageComponent };
+
+function parseSize(value: undefined | string | number): string {
+  if (typeof value === 'undefined') return '100%';
+  return typeof value === 'number' ? `${value}px` : value;
+}
 
 function getSvgCSS(component: TSvgImageComponent): FlattenSimpleInterpolation {
   return css`
@@ -28,9 +33,4 @@ export default function SvgImage({ component }: ImageProps) {
   `;
 
   return component.url ? <Wrapper src={component.url} /> : null;
-}
-
-function parseSize(value: undefined | string | number): string {
-  if (typeof value === "undefined") return "100%";
-  return typeof value === "number" ? `${value}px` : value;
 }

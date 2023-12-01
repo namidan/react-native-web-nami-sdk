@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import * as Icons from "@ant-design/icons";
-import ReactMarkdown from "react-markdown";
+import * as Icons from '@ant-design/icons';
 import type {
   TSymbolComponent,
   TTextComponent,
   TTextLikeComponent,
   TTextListComponent,
-} from "react-nami";
-import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+} from 'react-nami';
+import ReactMarkdown from 'react-markdown';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 import {
   applyStyles,
@@ -17,8 +17,31 @@ import {
   pickAndApplyBackgroundColor,
   strikethrough,
   transition,
-} from "./css";
-import TemplateComponent from "./templateComponent";
+} from './css';
+import TemplateComponent from './templateComponent';
+
+function applyLinkColor(
+  component: TTextLikeComponent
+): FlattenSimpleInterpolation {
+  const linkColor = component.linkColor || 'blue';
+  return css`
+    a:link {
+      color: ${linkColor};
+      text-decoration-line: underline;
+    }
+    a:visited {
+      color: ${linkColor};
+      text-decoration-line: underline;
+    }
+    a:hover {
+      color: ${linkColor};
+    }
+    a:active {
+      color: ${linkColor};
+      text-decoration-line: underline;
+    }
+  `;
+}
 
 type ComponentProps<T> = {
   component: T;
@@ -37,11 +60,11 @@ const TextWrapper = styled.div<{
   ${({ component, inFocusedState }) => css`
     ${pickAndApplyBackgroundColor(component, inFocusedState)}
     color: ${inFocusedState && component.focusedFontColor
-      ? component.focusedFontColor
-      : component.fontColor};
+    ? component.focusedFontColor
+    : component.fontColor};
     font-size: ${component.fontSize ?? 12}px;
-    text-align: ${component.alignment || "center"};
-    z-index: ${component.zIndex ?? "initial"};
+    text-align: ${component.alignment || 'center'};
+    z-index: ${component.zIndex ?? 'initial'};
     ${strikethrough(component.strikethrough)}
     ${font(component)}
     ${applyStyles(component)}
@@ -71,8 +94,8 @@ const LegalTextWrapper = styled.div<{ component: TTextLikeComponent }>`
     ${pickAndApplyBackgroundColor(component)}
     color: ${component.fontColor};
     font-size: ${component.fontSize ?? 12}px;
-    text-align: ${component.alignment || "center"};
-    z-index: ${component.zIndex ?? "initial"};
+    text-align: ${component.alignment || 'center'};
+    z-index: ${component.zIndex ?? 'initial'};
     ${font(component)}
     ${applyStyles(component)}
     ${applyLinkColor(component)}
@@ -104,7 +127,7 @@ export function Text({
   groupId,
 }: ComponentProps<TTextComponent>) {
   if (!component.text) return null;
-  if (component.textType === "legal") {
+  if (component.textType === 'legal') {
     return (
       <LegalTextWrapper component={component}>
         <ReactMarkdown>{component.text}</ReactMarkdown>
@@ -149,35 +172,11 @@ export function TextList({
 }
 
 export function Symbol({ component }: ComponentProps<TSymbolComponent>) {
-  // @ts-ignore fix it later
   const Icon = Icons[component.name] as React.FC | undefined;
-  if (typeof Icon === "undefined") return null;
+  if (typeof Icon === 'undefined') return null;
   return (
     <SymbolWrapper component={component}>
       <Icon />
     </SymbolWrapper>
   );
-}
-
-function applyLinkColor(
-  component: TTextLikeComponent
-): FlattenSimpleInterpolation {
-  const linkColor = component.linkColor || "blue";
-  return css`
-    a:link {
-      color: ${linkColor};
-      text-decoration-line: underline;
-    }
-    a:visited {
-      color: ${linkColor};
-      text-decoration-line: underline;
-    }
-    a:hover {
-      color: ${linkColor};
-    }
-    a:active {
-      color: ${linkColor};
-      text-decoration-line: underline;
-    }
-  `;
 }

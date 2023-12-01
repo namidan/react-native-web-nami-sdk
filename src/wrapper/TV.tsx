@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import {
   breakpointXl,
   breakpointXxl,
   colorBlack,
   colorNegative,
-} from "../utils/variables";
+} from '../utils/variables';
 
 type TVProps = {
   className?: string;
@@ -27,7 +27,7 @@ const Wrapper = styled.div<{ height: number; scale?: number }>`
   box-shadow: 0 35px 60px -24px rgba(0 0 0 / 0.4);
   user-select: none;
 
-  ${({ scale }) => (scale ? `transform: scale(${scale});` : "")}
+  ${({ scale }) => (scale ? `transform: scale(${scale});` : '')}
 
   @media only screen and (max-width: ${breakpointXxl}) {
     transform: scale(0.39);

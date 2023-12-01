@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import type { TComponent } from "react-nami";
-import styled from "styled-components";
+import type { TComponent } from 'react-nami';
+import styled from 'styled-components';
 
-import { transition } from "./css";
-import TemplateComponent from "./templateComponent";
+import { transition } from './css';
+import TemplateComponent from './templateComponent';
 
 type FooterProps = {
   components: TComponent[];

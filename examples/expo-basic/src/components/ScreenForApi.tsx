@@ -2,10 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { CampaignRuleList } from './CampaignsList';
-//@ts-ignore
 import { PaywallNami, usePaywallContext } from 'react-native-web-nami-sdk';
 
-export const TestComponentWithButtons = (props: any): React.ReactNode => {
+export const TestComponentWithButtons = (): React.ReactNode => {
   const { selectedPaywall, campaignRules } = usePaywallContext();
 
   return (

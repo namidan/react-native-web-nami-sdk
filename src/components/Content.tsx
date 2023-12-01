@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import type { TContainer } from "react-nami";
-import styled from "styled-components";
+import type { TContainer } from 'react-nami';
+import styled from 'styled-components';
 
-import Container from "./Container";
-import { transition } from "./css";
-import TemplateComponent from "./templateComponent";
+import Container from './Container';
+import { transition } from './css';
+import TemplateComponent from './templateComponent';
 
 type ContentProps = {
   component: TContainer | null;

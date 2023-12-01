@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import type { TFlexProductContainer } from "react-nami";
-import { processProductComponents } from "react-nami";
-import styled from "styled-components";
+import type { TFlexProductContainer } from 'react-nami';
+import { processProductComponents } from 'react-nami';
+import styled from 'styled-components';
 
-import { usePaywallContext } from "./../PaywallProvider";
-import Container from "./Container";
-import { transition } from "./css";
-import TemplateComponent from "./templateComponent";
-import { FeaturedContext } from "../contexts/context";
+import Container from './Container';
+import { transition } from './css';
+import TemplateComponent from './templateComponent';
+import { FeaturedContext } from '../contexts/context';
+import { usePaywallContext } from '../PaywallProvider';
 
 type ComponentProps<T> = {
   component: T;
@@ -26,18 +26,18 @@ const Wrapper = styled(Container)<{ flexDirectionData: any }>`
     row-gap: 24px;
   }
   @media (max-width: 825px) {
-    flex-direction: ${(props) => props.flexDirectionData.small && "column"};
+    flex-direction: ${(props) => props.flexDirectionData.small && 'column'};
     // TODO: Temp solution
     row-gap: 24px;
   }
   @media (min-width: 1000px) and (max-width: 1024px) {
-    flex-direction: ${(props) => props.flexDirectionData.medium && "row"};
+    flex-direction: ${(props) => props.flexDirectionData.medium && 'row'};
   }
   @media (min-width: 1200px) and (max-width: 1440px) {
-    flex-direction: ${(props) => props.flexDirectionData.large && "row"};
+    flex-direction: ${(props) => props.flexDirectionData.large && 'row'};
   }
   @media (min-width: 1600px) {
-    flex-direction: ${(props) => props.flexDirectionData.xlarge && "row"};
+    flex-direction: ${(props) => props.flexDirectionData.xlarge && 'row'};
   }
 `;
 

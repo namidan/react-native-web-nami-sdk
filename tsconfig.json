@@ -1,37 +1,31 @@
 {
+  "include": ["src", "types"],
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "react-native-web-nami-sdk": [
-        "./src/index"
-      ],
-//      "react-nami": [
-//        "../react-nami/src/index"
-//      ]
-    },
-    "outDir": "./dist/",
+    "rootDir": "src",
+    "module": "esnext",
+    "target": "es6",
+    "lib": ["es6", "DOM"],
+    "importHelpers": true,
+    "declaration": true,
     "sourceMap": true,
-    "noImplicitAny": true,
-    "useDefineForClassFields": true,
-    "allowUnreachableCode": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
-    "ignoreDeprecations": "5.0",
-    "noFallthroughCasesInSwitch": true,
+    "strict": true,
     "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
+    "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "module": "commonjs",
-    "target": "es6",
-    "jsx": "react",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "downlevelIteration": true,
+    "alwaysStrict": true,
+    "removeComments": false,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
   },
-  "include": ["src/**/*"],
+  "exclude": ["__tests__"]
 }

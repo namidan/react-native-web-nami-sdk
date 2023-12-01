@@ -4,24 +4,35 @@ import type {
   TContainerPosition,
   TProductContainer,
   TFlexProductContainer,
-} from "react-nami";
-import styled, { css, FlattenSimpleInterpolation } from "styled-components";
+} from 'react-nami';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
-import { applyStyles, flexDirection, pickAndApplyBackgroundColor } from "./css";
+import { applyStyles, flexDirection, pickAndApplyBackgroundColor } from './css';
+
+function parsePosition(
+  position?: TContainerPosition
+): string | FlattenSimpleInterpolation {
+  if (!position) return '';
+  const [alignment, spot] = position.split('-');
+  return css`
+    align-self: ${alignment};
+    ${spot}: 0;
+  `;
+}
 
 const Container = styled.div<{
   component: Omit<
     TContainer | TProductContainer | TFlexProductContainer | TCarouselContainer,
-    "name"
+    'name'
   >;
   inFocusedState?: boolean;
 }>`
   display: flex;
 
   ${({ component, inFocusedState }) => {
-    const isVertical = component.direction === "vertical";
-    const sizeKey = isVertical ? "width" : "height";
-    const spaceKey = isVertical ? "margin-top" : "margin-left";
+    const isVertical = component.direction === 'vertical';
+    const sizeKey = isVertical ? 'width' : 'height';
+    const spaceKey = isVertical ? 'margin-top' : 'margin-left';
     const background = component.fillImage
       ? css`
           background-image: url(${component.fillImage});
@@ -59,14 +70,3 @@ const Container = styled.div<{
 `;
 
 export default Container;
-
-function parsePosition(
-  position?: TContainerPosition
-): string | FlattenSimpleInterpolation {
-  if (!position) return "";
-  const [alignment, spot] = position.split("-");
-  return css`
-    align-self: ${alignment};
-    ${spot}: 0;
-  `;
-}

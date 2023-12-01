@@ -1,13 +1,11 @@
-import React, { useEffect, useMemo } from "react";
-import "react-spring-bottom-sheet/dist/style.css";
+import React, { useEffect, useMemo } from 'react';
+import './PaywallNami.css';
 
-import "./PaywallNami.css";
+import { interpolate } from 'react-nami';
 
-import { interpolate } from "react-nami";
-
-import PaywallPreview from "./PaywallPreview";
-import { usePaywallContext } from "./PaywallProvider";
-import { prepareAndLoadFonts } from "./utils/fonts";
+import PaywallPreview from './PaywallPreview';
+import { usePaywallContext } from './PaywallProvider';
+import { prepareAndLoadFonts } from './utils/fonts';
 
 export const PaywallNami: React.FC = () => {
   const {
@@ -39,7 +37,6 @@ export const PaywallNami: React.FC = () => {
       anySkuHasIntroOffer,
       anySkuHasPromoOffer,
       currentPage,
-      // TODO obtain this;
       focusedState,
       safeAreaTop: 40,
       isLoggedIn: false,
@@ -47,13 +44,6 @@ export const PaywallNami: React.FC = () => {
     const replacements = {
       state,
       launch,
-      // customer,
-      // var: variables,
-      // media: buildMediaVariables(mediaList, { convertToUrl: true }),
-      // legal: citation ? buildLegalVariables(citation) : {},
-      // icon: (iconsQuery.data || []).reduce((output, icon) => {
-      //   return { ...output, [icon.name]: icon.ant };
-      // }, {}),
     };
     return interpolate(template, interpolate(replacements, replacements));
   }, [
@@ -66,55 +56,14 @@ export const PaywallNami: React.FC = () => {
     anySkuHasPromoOffer,
     currentPage,
     selectedProducts,
-    // variables,
-    // citations,
-    // defaultLanguage,
-    // language,
-    // iconsQuery.data,
-    // mediaList,
-    // inDarkMode,
-    // orientation,
-    // focusedState,
-    // safeAreaTop,
-    // isLoggedIn,
-    // customer,
   ]);
 
-  const renderTemplate = () => {
-    return (
-      <PaywallPreview
-        template={parsedTemplate!}
-        focusedState={focusedState}
-        currentPage={currentPage}
-        groupId={currentGroupId}
-      />
-    );
-  };
-
   return (
-    <>
-      {template ? (
-        renderTemplate()
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "row",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "24px",
-              textAlign: "center",
-            }}
-          >
-            Please select paywall to show
-          </p>
-        </div>
-      )}
-    </>
+    <PaywallPreview
+      template={parsedTemplate!}
+      focusedState={focusedState}
+      currentPage={currentPage}
+      groupId={currentGroupId}
+    />
   );
 };

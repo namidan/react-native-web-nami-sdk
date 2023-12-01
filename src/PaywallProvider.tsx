@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useMemo } from 'react';
 
 export const PaywallContext = createContext(null);
 
@@ -21,7 +21,7 @@ export const PaywallProvider = ({ children, state, actions }: any) => {
 export const usePaywallContext = () => {
   const context = useContext(PaywallContext);
   if (!context) {
-    throw new Error("usePaywallContext must be used within a PaywallProvider");
+    throw new Error('usePaywallContext must be used within a PaywallProvider');
   }
   return context;
 };

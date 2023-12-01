@@ -1,11 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import type { TImageComponent } from "react-nami";
-import styled, { css } from "styled-components";
+import type { TImageComponent } from 'react-nami';
+import styled, { css } from 'styled-components';
 
-import { transition } from "./css";
+import { transition } from './css';
 
 type ImageProps = { component: TImageComponent };
+
+function parseSize(value: undefined | string | number): string {
+  if (typeof value === 'undefined') return '100%';
+  return typeof value === 'number' ? `${value}px` : value;
+}
 
 const Wrapper = styled.div<ImageProps>`
   pointer-events: none;
@@ -22,10 +27,10 @@ const Wrapper = styled.div<ImageProps>`
       rightMargin,
     },
   }) => {
-    const fit = imageCropping === "fit";
+    const fit = imageCropping === 'fit';
     return css`
       background-image: url(${url});
-      background-size: ${fit ? "contain" : "cover"};
+      background-size: ${fit ? 'contain' : 'cover'};
       background-position: ${alignment} center;
       background-repeat: no-repeat;
       height: ${parseSize(height)};
@@ -37,9 +42,4 @@ const Wrapper = styled.div<ImageProps>`
 
 export default function Image({ component }: ImageProps) {
   return component.url ? <Wrapper component={component} /> : null;
-}
-
-function parseSize(value: undefined | string | number): string {
-  if (typeof value === "undefined") return "100%";
-  return typeof value === "number" ? `${value}px` : value;
 }

@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import type { TContainer } from "react-nami";
-import { withOverrides } from "react-nami";
-import styled, { css } from "styled-components";
+import type { TContainer } from 'react-nami';
+import { withOverrides } from 'react-nami';
+import styled, { css } from 'styled-components';
 
 import {
   paddingAndMargin,
   pickAndApplyBackgroundColor,
   transition,
-} from "./css";
-import TemplateComponent from "./templateComponent";
+} from './css';
+import TemplateComponent from './templateComponent';
 
 type BackgroundContainerProps = {
   component: TContainer;
@@ -18,7 +18,7 @@ type BackgroundContainerProps = {
   groupId: string | null;
 };
 
-const Wrapper = styled.div<Omit<BackgroundContainerProps, "device">>`
+const Wrapper = styled.div<Omit<BackgroundContainerProps, 'device'>>`
   display: flex;
   flex-direction: column;
   justify-content: center;
